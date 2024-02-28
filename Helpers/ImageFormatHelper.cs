@@ -577,7 +577,7 @@ namespace OGLibCDi.Helpers
       }
     }
 
-    public static void CreateGifFromImageList(List<Image> images, string outputPath, int delay = 10, int repeat = 0, Image? backgroundFrame = null)
+    public static void CreateGifFromImageList(List<Image> images, string outputPath, int delay = 10, int repeat = 0, Image? backgroundFrame = null, int? width = null, int? height = null )
     {
       Image<Rgba32>? background = null;
       if (backgroundFrame != null)
@@ -586,7 +586,7 @@ namespace OGLibCDi.Helpers
         background = SLImage.Load<Rgba32>(bytes);
       }
 
-      using SLImage gif = new SixLabors.ImageSharp.Image<Rgba32>(backgroundFrame?.Width ?? 384, backgroundFrame?.Height ?? 240);
+      using SLImage gif = new SixLabors.ImageSharp.Image<Rgba32>((backgroundFrame?.Width ?? width) ?? 384, (backgroundFrame?.Height ?? height) ?? 240);
       var gifMetaData = gif.Metadata.GetGifMetadata();
       gifMetaData.RepeatCount = (ushort)repeat;
 
@@ -603,7 +603,7 @@ namespace OGLibCDi.Helpers
         using (SLImage frameImage = SLImage.Load<Rgba32>(bytes))
         {
           // Create a new frame by compositing the current image over the background.
-          using (SLImage frame = new SixLabors.ImageSharp.Image<Rgba32>(backgroundFrame?.Width ?? 384, backgroundFrame?.Height ?? 240))
+          using (SLImage frame = new SixLabors.ImageSharp.Image<Rgba32>((backgroundFrame?.Width ?? width) ?? 384, (backgroundFrame?.Height ?? height) ?? 240))
           {
             if (background != null)
             {

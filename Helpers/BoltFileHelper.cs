@@ -1,6 +1,8 @@
-﻿namespace OGLibCDi.Helpers;
+﻿using OGLibCDi.Models.Bolt;
 
-public class BoltFileHelper
+namespace OGLibCDi.Helpers;
+
+public static class BoltFileHelper
 {
   public static int GetEndOfBoltData(byte[] data)
   {
@@ -61,9 +63,4 @@ public class BoltFileHelper
   }
 }
 
-public class BoltOffset
-{
-  public int Offset { get; set; }
-  public int InitialDataLength { get; set; }
-  public int SecondaryDataLength { get; set; }
-}
+
