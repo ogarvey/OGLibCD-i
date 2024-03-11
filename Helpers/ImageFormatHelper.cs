@@ -622,6 +622,9 @@ namespace OGLibCDi.Helpers
         }
       }
 
+      // Prevent black frame at the start of the gif.
+      gif.Frames.RemoveFrame(0);
+
       // Save the final result.
       gif.SaveAsGif(outputPath);
 
